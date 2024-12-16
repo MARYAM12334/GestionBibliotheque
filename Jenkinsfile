@@ -79,9 +79,11 @@ pipeline {
                     steps {
                         withSonarQubeEnv('SonarQube') {
                             sh '''
+                            `   echo "Starting SonarQube Analysis..."
                                 mvn sonar:sonar \
                                 -Dsonar.host.url=http://localhost:9000 \
                                 -Dsonar.login=$SONAR_TOKEN
+                                echo "SonarQube Analysis completed"
                             '''
                         }
                     }
