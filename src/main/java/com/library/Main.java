@@ -30,7 +30,7 @@ public class Main {
         // Création des services
         BookService bookService = new BookService(bookDAO);
         StudentService studentService = new StudentService(studentDAO);
-        BorrowService borrowService = new BorrowService(borrowDAO);
+        BorrowService borrowService = new BorrowService(studentDAO, borrowDAO);
 
 
 

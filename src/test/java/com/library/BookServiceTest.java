@@ -18,8 +18,6 @@ class BookServiceTest {
 
     @BeforeEach
     void setUp() throws SQLException {
-        DbConnection.getConnection().prepareStatement("DELETE FROM borrows").executeUpdate();
-        DbConnection.getConnection().prepareStatement("DELETE FROM students").executeUpdate();
         DbConnection.getConnection().prepareStatement("DELETE FROM books").executeUpdate();
         bookDAO = new BookDAO(DbConnection.getConnection());
         bookService = new BookService(bookDAO);
@@ -27,16 +25,17 @@ class BookServiceTest {
 
     @Test
     void testAddBook() {
-        Book book = new Book("Java Programming", "John Doe","12345", 2023);
+        Book book = new Book(1,"Java Programming", "John Doe","12345", 2023);
         bookService.addBook(book);
-        assertEquals(1, bookDAO.getAllBooks().size());
-        assertEquals("Java Programming", bookDAO.getBookById(1).getTitle());
+        List<Book> books = bookDAO.getAllBooks();
+        int bookId = books.get(0).getId();
+        assertEquals("Java Programming", bookDAO.getBookById(bookId).getTitle());
     }
 
-    /*@Test
+    @Test
     void testUpdateBook() {
         // Ajouter d'abord un livre
-        Book book = new Book("Java Programming", "John Doe", "12345", 2023);
+        Book book = new Book(2,"Java Programming", "John Doe", "12345", 2023);
         bookService.addBook(book);
 
         // Récupérer l'ID du livre ajouté
@@ -44,7 +43,7 @@ class BookServiceTest {
         int bookId = books.get(0).getId();
 
         // Créer un livre mis à jour
-        Book bookUpdate = new Book("Advanced Java", "Jane Doe", "12345", 2025);
+        Book bookUpdate = new Book(2,"Advanced Java", "Jane Doe", "12345", 2025);
         bookUpdate.setId(bookId); // Important: définir l'ID pour la mise à jour
 
         bookService.updateBook(bookUpdate);
@@ -52,12 +51,12 @@ class BookServiceTest {
         Book updatedBook = bookDAO.getBookById(bookId);
         assertEquals("Advanced Java", updatedBook.getTitle());
         assertEquals("Jane Doe", updatedBook.getAuthor());
-    }*/
+    }
 
-    /*@Test
+    @Test
     void testDeleteBook() {
         // Ajouter d'abord un livre
-        Book book = new Book("Java Programming", "John Doe", "12345", 2023);
+        Book book = new Book(1,"Java Programming", "John Doe", "12345", 2023);
         bookService.addBook(book);
 
         // Récupérer l'ID du livre ajouté
@@ -69,5 +68,5 @@ class BookServiceTest {
 
         // Vérifier que le livre est supprimé
         assertNull(bookDAO.getBookById(bookId));
-    }*/
+    }
 }

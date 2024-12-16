@@ -30,6 +30,13 @@ public class Book {
         this.isbn = isbn;
         this.publishedYear = publishedYear;
     }
+    public Book(int id ,String title, String author, String isbn, int publishedYear) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+        this.publishedYear = publishedYear;
+    }
 
     // Constructeur additionnel si nécessaire
     public Book(String title, String author) {

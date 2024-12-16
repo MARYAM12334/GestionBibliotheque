@@ -16,10 +16,11 @@ public class StudentDAO {
     }
 
     public void addStudent(Student student) {
-        String query = "INSERT INTO students (name,email) VALUES (?,?)";
+        String query = "INSERT INTO students (id,name,email) VALUES (?,?,?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, student.getName());
-            statement.setString(2, student.getEmail());
+            statement.setInt(1, student.getId());
+            statement.setString(2, student.getName());
+            statement.setString(3, student.getEmail());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Erreur lors de l'ajout de l'étudiant", e);
@@ -32,22 +33,17 @@ public class StudentDAO {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    Student student = new Student(
+                    return new Student(
                             resultSet.getInt("id"),
-                            resultSet.getString("name")
+                            resultSet.getString("name"),
+                            resultSet.getString("email")
                     );
-                    //System.out.println("Student trouver est "+"ID: " + student.getId() + " | Nom: " + student.getName());
-                    return student;
-                } else {
-                    LOGGER.log(Level.WARNING, "Aucun étudiant trouvé avec l'ID : " + id);
-                    // Retourner un étudiant vide plutôt que null
-                    return new Student(-1, "Étudiant non trouvé");
                 }
+                return null; // Retourne null si l'étudiant n'existe pas
             }
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Erreur lors de la récupération de l'étudiant", e);
-            // En cas d'erreur, retourner un étudiant avec un message d'erreur
-            return new Student(-1, "Erreur de base de données");
+            return null;
         }
     }
 
@@ -57,7 +53,7 @@ public class StudentDAO {
         try (PreparedStatement statement = connection.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
-                students.add(new Student(resultSet.getString("name"), resultSet.getString("email")));
+                students.add(new Student(resultSet.getInt("id"),resultSet.getString("name"), resultSet.getString("email")));
             }
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Erreur lors de la récupération des étudiants", e);
@@ -66,10 +62,11 @@ public class StudentDAO {
     }
 
     public void updateStudent(Student student) {
-        String query = "UPDATE students SET name = ? WHERE id = ?";
+        String query = "UPDATE students SET email = ?, name = ? WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, student.getName());
-            statement.setInt(2, student.getId());
+            statement.setString(1, student.getEmail());
+            statement.setString(2, student.getName());
+            statement.setInt(3, student.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Erreur lors de la mise à jour de l'étudiant", e);

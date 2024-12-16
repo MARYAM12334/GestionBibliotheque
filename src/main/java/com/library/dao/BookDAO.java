@@ -17,12 +17,13 @@ public class BookDAO {
     //Modifier la méthode add pour utiliser la connection passée dans le constructeur
 
     public void add(Book book) {
-        String sql = "INSERT INTO books (title, author, isbn, published_year) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO books (id,title, author, isbn, published_year) VALUES (?,?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, book.getTitle());
-            statement.setString(2, book.getAuthor());
-            statement.setString(3, book.getIsbn());
-            statement.setInt(4, book.getPublishedYear());
+            statement.setInt(1, book.getId());
+            statement.setString(2, book.getTitle());
+            statement.setString(3, book.getAuthor());
+            statement.setString(4, book.getIsbn());
+            statement.setInt(5, book.getPublishedYear());
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Error adding book", e);
