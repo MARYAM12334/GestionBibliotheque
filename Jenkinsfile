@@ -1,28 +1,81 @@
+// pipeline {
+//     agent any
+//     environment {
+//         MAVEN_HOME = tool 'Maven'
+//     }
+//     stages {
+//         stage('Checkout') {
+//             steps {
+//                 git 'https://github.com/MARYAM12334/GestionBibliotheque'
+//             }
+//         }
+//         stage('Build') {
+//             steps {
+//                 sh '${MAVEN_HOME}/bin/mvn clean compile'
+//             }
+//         }
+//         stage('Test') {
+//             steps {
+//                 sh '${MAVEN_HOME}/bin/mvn test'
+//             }
+//         }
+//         stage('Quality Analysis') {
+//             steps {
+//                 withSonarQubeEnv('SonarQube') {
+//                     sh '${MAVEN_HOME}/bin/mvn sonar:sonar'
+//                 }
+//             }
+//         }
+//         stage('Deploy') {
+//             steps {
+//                 echo 'Déploiement simulé réussi'
+//             }
+//         }
+//     }
+//     post {
+//         success {
+//             emailext to: 'votre-email@example.com',
+//                 subject: 'Build Success',
+//                 body: 'Le build a été complété avec succès.'
+//         }
+//         failure {
+//             emailext to: 'votre-email@example.com',
+//                 subject: 'Build Failed',
+//                 body: 'Le build a échoué.'
+//         }
+//     }
+// }
+
 pipeline {
     agent any
-    environment {
-        MAVEN_HOME = tool 'Maven'
+    tools {
+        maven 'Maven'
+        jdk 'JDK11'
+
+
     }
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/MARYAM12334/GestionBibliotheque.git'
+
+               checkout scm
+
             }
         }
         stage('Build') {
             steps {
-                sh '${MAVEN_HOME}/bin/mvn clean compile'
+                sh 'mvn clean compile'
             }
         }
         stage('Test') {
             steps {
-                sh '${MAVEN_HOME}/bin/mvn test'
+                sh 'mvn test'
             }
         }
         stage('Quality Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh '${MAVEN_HOME}/bin/mvn sonar:sonar'
+                    sh 'mvn sonar:sonar'
                 }
             }
         }
@@ -34,12 +87,12 @@ pipeline {
     }
     post {
         success {
-            emailext to: 'votre-email@example.com',
+            emailext to: 'maryamouhdan@gmail.com',
                 subject: 'Build Success',
                 body: 'Le build a été complété avec succès.'
         }
         failure {
-            emailext to: 'votre-email@example.com',
+            emailext to: 'maryamouhdan@gmail.com',
                 subject: 'Build Failed',
                 body: 'Le build a échoué.'
         }
