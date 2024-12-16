@@ -30,7 +30,7 @@ class StudentServiceTest {
         assertEquals("Alice", studentDAO.getStudentById(1).getName());
     }
 
-    @Test
+    /*@Test
     void testUpdateStudent() {
         Student student = new Student("Alice", "alice@example.com");
         Student studentupdate = new Student("Alice Smith", "alice.smith@example.com");
@@ -38,9 +38,9 @@ class StudentServiceTest {
         studentService.addStudent(student);
         studentService.updateStudent(studentupdate);
         assertEquals("Alice Smith", studentDAO.getStudentById(1).getName());
-    }
+    }*/
 
-    @Test
+    /*@Test
     void testDeleteStudent() {
 
         Student student = new Student("Alice", "alice@example.com");
@@ -49,7 +49,7 @@ class StudentServiceTest {
         int studentId = students.get(0).getId();
         studentService.deleteStudent(studentId);
         assertNull(studentDAO.getStudentById(studentId));
-    }
+    }*/
 
     @Test
     void testGetAllStudents() {

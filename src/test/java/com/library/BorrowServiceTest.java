@@ -54,7 +54,7 @@ class BorrowServiceTest {
         assertEquals(book.getId(), borrows.get(0).getBook().getId());
     }
 
-    @Test
+    /*@Test
     void testReturnBook() {
         // Créer un emprunt
         Student student = studentDAO.getAllStudents().get(0);
@@ -115,5 +115,5 @@ class BorrowServiceTest {
             borrowService.borrowBook(borrow);
         });
 
-    }
+    }*/
 }

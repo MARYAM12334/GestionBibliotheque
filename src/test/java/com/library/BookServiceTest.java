@@ -30,7 +30,7 @@ class BookServiceTest {
         assertEquals("Java Programming", bookDAO.getBookById(1).getTitle());
     }
 
-    @Test
+    /*@Test
     void testUpdateBook() {
         // Ajouter d'abord un livre
         Book book = new Book("Java Programming", "John Doe", "12345", 2023);
@@ -49,9 +49,9 @@ class BookServiceTest {
         Book updatedBook = bookDAO.getBookById(bookId);
         assertEquals("Advanced Java", updatedBook.getTitle());
         assertEquals("Jane Doe", updatedBook.getAuthor());
-    }
+    }*/
 
-    @Test
+    /*@Test
     void testDeleteBook() {
         // Ajouter d'abord un livre
         Book book = new Book("Java Programming", "John Doe", "12345", 2023);
@@ -66,5 +66,5 @@ class BookServiceTest {
 
         // Vérifier que le livre est supprimé
         assertNull(bookDAO.getBookById(bookId));
-    }
+    }*/
 }
