@@ -72,13 +72,21 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('Quality Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh 'mvn sonar:sonar'
+         stage('Quality Analysis') {
+                    environment {
+                        SONAR_TOKEN = credentials('squ_9f462f190371d3d22fa6d943ad90ed9115372b0b')  // Ajouté pour l'authentification SonarQube
+                    }
+                    steps {
+                        withSonarQubeEnv('SonarQube') {
+                            sh '''
+                                mvn sonar:sonar \
+                                -Dsonar.host.url=http://localhost:9000 \
+                                -Dsonar.login=$SONAR_TOKEN
+                            '''
+                        }
+                    }
                 }
-            }
-        }
+
         stage('Deploy') {
             steps {
                 echo 'Déploiement simulé réussi'

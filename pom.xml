@@ -49,9 +49,11 @@
     </build>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <maven.compiler.release>11</maven.compiler.release>
+        <sonar.host.url>http://localhost:9000</sonar.host.url>
+        <sonar.login>squ_9f462f190371d3d22fa6d943ad90ed9115372b0b</sonar.login>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <java.version>17</java.version>
     </properties>
 
     <dependencies>
