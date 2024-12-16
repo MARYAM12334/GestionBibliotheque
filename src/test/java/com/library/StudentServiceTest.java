@@ -18,6 +18,12 @@ class StudentServiceTest {
 
     @BeforeEach
     void setUp() throws SQLException {
+
+        DbConnection.getConnection().prepareStatement("DELETE FROM borrows").executeUpdate();
+        DbConnection.getConnection().prepareStatement("DELETE FROM students").executeUpdate();
+        DbConnection.getConnection().prepareStatement("DELETE FROM books").executeUpdate();
+
+
         studentDAO = new StudentDAO(DbConnection.getConnection());
         studentService = new StudentService(studentDAO);
     }

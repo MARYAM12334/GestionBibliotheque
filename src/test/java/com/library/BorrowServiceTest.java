@@ -26,6 +26,11 @@ class BorrowServiceTest {
 
     @BeforeEach
     void setUp() throws SQLException {
+
+        DbConnection.getConnection().prepareStatement("DELETE FROM borrows").executeUpdate();
+        DbConnection.getConnection().prepareStatement("DELETE FROM students").executeUpdate();
+        DbConnection.getConnection().prepareStatement("DELETE FROM books").executeUpdate();
+
         bookDAO = new BookDAO(DbConnection.getConnection());
         studentDAO = new StudentDAO(DbConnection.getConnection());
 
