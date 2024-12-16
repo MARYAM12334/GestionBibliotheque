@@ -7,6 +7,8 @@ public class Student {
 
     // Constructeur par défaut
     public Student(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     // Constructeur complet
@@ -23,6 +25,7 @@ public class Student {
         this.name = name;
         this.email = email;
     }
+
 
     // Getters et Setters
     public int getId() {
@@ -47,5 +50,14 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

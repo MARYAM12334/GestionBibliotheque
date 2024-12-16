@@ -7,6 +7,7 @@ import com.library.model.Student;
 import com.library.dao.BorrowDAO;
 import com.library.model.Borrow;
 
+import java.util.Date;
 import java.util.List;
 
 public class BorrowService {
@@ -22,6 +23,11 @@ public class BorrowService {
     public void borrowBook(Borrow borrow) {
         // Sauvegarde de l'emprunt dans la base de données
         borrowDAO.save(borrow);
+    }
+
+    public void returnBook(Borrow borrow) {
+        borrow.setReturnDate(new Date()); // Définir la date de retour
+        borrowDAO.update(borrow);
     }
 
     //Afficher les emprunts (méthode fictive, à adapter)

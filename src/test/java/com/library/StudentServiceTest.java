@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,11 +42,13 @@ class StudentServiceTest {
 
     @Test
     void testDeleteStudent() {
+
         Student student = new Student("Alice", "alice@example.com");
         studentService.addStudent(student);
-        studentService.deleteStudent(1);
-        //TODO
-        //assertTrue(studentDAO.getStudentById(1).isEmpty());
+        List<Student> students = studentDAO.getAllStudents();
+        int studentId = students.get(0).getId();
+        studentService.deleteStudent(studentId);
+        assertNull(studentDAO.getStudentById(studentId));
     }
 
     @Test
@@ -55,5 +58,11 @@ class StudentServiceTest {
         studentService.addStudent(student1);
         studentService.addStudent(student2);
         assertEquals(2, studentDAO.getAllStudents().size());
+    }
+    @Test
+    void testFindStudentById() {
+        Student student1 = studentService.findStudentById(1);
+        System.out.println(student1);
+
     }
 }

@@ -69,4 +69,15 @@ public class Borrow {
     public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
     }
+
+    @Override
+    public String toString() {
+        return "Borrow{" +
+                "id=" + id +
+                ", student=" + student +
+                ", book=" + book +
+                ", borrowDate=" + borrowDate +
+                ", returnDate=" + returnDate +
+                '}';
+    }
 }

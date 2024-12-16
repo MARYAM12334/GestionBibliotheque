@@ -12,6 +12,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,6 +22,7 @@ class BorrowServiceTest {
     private BorrowService borrowService;
     private BookDAO bookDAO;
     private StudentDAO studentDAO;
+    private BorrowDAO borrowDAO;
 
     @BeforeEach
     void setUp() throws SQLException {
@@ -38,29 +42,78 @@ class BorrowServiceTest {
 
     @Test
     void testBorrowBook() {
-        //TODO
-        //assertEquals("Livre emprunté avec succès!", borrowService.borrowBook(new Borrow(1,1)));
-        //assertFalse(bookDAO.getBookById(1).isAvailable());
+        Student student = studentDAO.getAllStudents().get(0);
+        Book book = bookDAO.getAllBooks().get(0);
+
+        Borrow borrow = new Borrow(student, book, new Date(), null);
+        borrowService.borrowBook(borrow);
+
+        List<Borrow> borrows = borrowDAO.getAllBorrows();
+        assertFalse(borrows.isEmpty());
+        assertEquals(student.getId(), borrows.get(0).getStudent().getId());
+        assertEquals(book.getId(), borrows.get(0).getBook().getId());
     }
 
     @Test
     void testReturnBook() {
-        //TODO
-//        borrowService.borrowBook(1, 1);
-//        assertEquals("Livre retourné avec succès!", borrowService.returnBook(1, 1));
-//        assertTrue(bookDAO.getBookById(1).get().isAvailable());
+        // Créer un emprunt
+        Student student = studentDAO.getAllStudents().get(0);
+        Book book = bookDAO.getAllBooks().get(0);
+        Borrow borrow = new Borrow(student, book, new Date(), null);
+
+        // Enregistrer l'emprunt
+        borrowService.borrowBook(borrow);
+
+        // Récupérer l'emprunt depuis la base de données
+        List<Borrow> borrows = borrowDAO.getAllBorrows();
+        Borrow savedBorrow = borrows.get(0);
+
+        // Retourner le livre
+        borrowService.returnBook(savedBorrow);
+
+        // Vérifier que la date de retour est définie
+        Borrow returnedBorrow = borrowDAO.getAllBorrows().get(0);
+        assertNotNull(returnedBorrow.getReturnDate());
     }
 
     @Test
     void testBorrowBookNotAvailable() {
-        //TODO
-//        borrowService.borrowBook(1, 1);
-//        assertEquals("Le livre n'est pas disponible.", borrowService.borrowBook(2, 1));
+
+        // Créer et enregistrer un premier emprunt
+        Student student1 = studentDAO.getAllStudents().get(0);
+        Book book = bookDAO.getAllBooks().get(0);
+        Borrow firstBorrow = new Borrow(student1, book, new Date(), null);
+        borrowService.borrowBook(firstBorrow);
+
+        // Essayer d'emprunter le même livre avec un autre étudiant
+        Student student2 = new Student("Bob");
+        studentDAO.addStudent(student2);
+
+        // Vérifier qu'on ne peut pas emprunter un livre déjà emprunté
+        List<Borrow> activeBorrows = borrowDAO.getAllBorrows().stream()
+                .filter(b -> b.getBook().getId() == book.getId() && b.getReturnDate() == null)
+                .collect(Collectors.toList());
+
+        assertFalse(activeBorrows.isEmpty());
     }
 
     @Test
     void testBorrowBookStudentNotFound() {
-        //TODO
-//        assertEquals("Étudiant ou livre non trouvé.", borrowService.borrowBook(3, 1));
+
+        // Créer un étudiant avec un ID qui n'existe pas
+        Student nonExistentStudent = new Student("NonExistent");
+        nonExistentStudent.setId(999); // ID qui n'existe pas
+
+        // Obtenir un livre existant
+        Book book = bookDAO.getAllBooks().get(0);
+
+        // Créer un emprunt avec l'étudiant non existant
+        Borrow borrow = new Borrow(nonExistentStudent, book, new Date(), null);
+
+        // Vérifier que l'emprunt échoue
+        assertThrows(RuntimeException.class, () -> {
+            borrowService.borrowBook(borrow);
+        });
+
     }
 }

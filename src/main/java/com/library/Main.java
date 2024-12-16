@@ -64,7 +64,11 @@ public class Main {
                     String title = scanner.nextLine();
                     System.out.print("Entrez l'auteur du livre: ");
                     String author = scanner.nextLine();
-                    Book book2 = new Book(title, author);
+                    System.out.print("Entrez ISBN du livre: ");
+                    String isbn = scanner.nextLine();
+                    System.out.print("Entrez l'année de publication: ");
+                    int publishedYear = scanner.nextInt();
+                    Book book2 = new Book(title, author, isbn, publishedYear);
                     bookService.addBook(book2);
                     break;
 
@@ -75,7 +79,9 @@ public class Main {
                 case 3:
                     System.out.print("Entrez le nom de l'étudiant: ");
                     String studentName = scanner.nextLine();
-                    Student student = new Student(studentName);
+                    System.out.println("Entrez l'email de l'étudiant: ");
+                    String studentEmail = scanner.nextLine();
+                    Student student = new Student(studentName,studentEmail);
                     studentService.addStudent(student);
                     break;
 
@@ -84,18 +90,55 @@ public class Main {
                     break;
 
                 case 5:
-                    System.out.print("Entrez l'ID de l'étudiant: ");
-                    int studentId = scanner.nextInt();
-                    System.out.print("Entrez l'ID du livre: ");
-                    int bookId = scanner.nextInt();
-                    Student studentForBorrow = studentService.findStudentById(studentId);
-                    Book bookForBorrow = bookService.findBookById(bookId);
-                    if (studentForBorrow != null && bookForBorrow != null) {
-                        // Créer un objet Borrow avec les informations nécessaires
-                        Borrow borrow = new Borrow(studentForBorrow, bookForBorrow, new Date(), null);
-                        borrowService.borrowBook(borrow);  // Appel de la méthode avec l'objet Borrow
-                    } else {
-                        System.out.println("Étudiant ou livre introuvable.");
+                    try {
+                        System.out.print("Entrez l'ID de l'étudiant: ");
+                        int studentId = Integer.parseInt(scanner.nextLine());
+
+                        System.out.print("Entrez l'ID du livre: ");
+                        int bookId = Integer.parseInt(scanner.nextLine());
+                        System.out.println("Entrez la date de retour du livre (yyyy-mm-dd): ");
+                        String returnDateString = scanner.nextLine();
+                        // Validation de la date
+                        Date returnDate;
+                        try {
+                            returnDate = java.sql.Date.valueOf(returnDateString);
+                            // Vérifier si la date est dans le futur
+                            if (returnDate.before(new Date())) {
+                                System.out.println("La date de retour doit être dans le futur.");
+                                break;
+                            }
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Format de date invalide. Utilisez le format yyyy-mm-dd");
+                            break;
+                        }
+
+                        Student studentForBorrow = studentService.findStudentById(studentId);
+                        Book bookForBorrow = bookService.findBookById(bookId);
+
+                        if (studentForBorrow == null) {
+                            System.out.println("Étudiant non trouvé avec l'ID: " + studentId);
+                            break;
+                        }
+
+                        if (bookForBorrow == null) {
+                            System.out.println("Livre non trouvé avec l'ID: " + bookId);
+                            break;
+                        }
+
+                        // Créer l'emprunt
+                        Borrow borrow = new Borrow(studentForBorrow, bookForBorrow, new Date(), returnDate);
+
+                        try {
+                            borrowService.borrowBook(borrow);
+                            System.out.println("Emprunt enregistré avec succès!");
+                        } catch (RuntimeException e) {
+                            System.out.println("Erreur lors de l'enregistrement de l'emprunt: " + e.getMessage());
+                        }
+
+                    } catch (NumberFormatException e) {
+                        System.out.println("Veuillez entrer un nombre valide pour l'ID.");
+                    } catch (Exception e) {
+                        System.out.println("Une erreur est survenue: " + e.getMessage());
                     }
                     break;
 

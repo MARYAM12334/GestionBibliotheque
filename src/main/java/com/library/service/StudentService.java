@@ -22,7 +22,7 @@ public class StudentService {
     public void displayStudents() {
         List<Student> students = studentDAO.getAllStudents();
         for (Student student : students) {
-            System.out.println("ID: " + student.getId() + " | Nom: " + student.getName());
+            System.out.println("Nom: " + student.getName() + " | email: " + student.getEmail());
         }
     }
 

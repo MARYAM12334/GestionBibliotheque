@@ -62,4 +62,14 @@ public class BorrowDAO {
         }
     }
 
+    public void update(Borrow borrow) {
+        String query = "UPDATE borrows SET return_date = ? WHERE id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setDate(1, new java.sql.Date(borrow.getReturnDate().getTime()));
+            stmt.setInt(2, borrow.getId());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error updating borrow", e);
+        }
+    }
 }
