@@ -15,8 +15,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
-                    <source>11</source> <!-- Java 11 -->
-                    <target>11</target> <!-- Java 11 -->
+                    <source>17</source> <!-- Java 11 -->
+                    <target>17</target> <!-- Java 11 -->
                 </configuration>
             </plugin>
 
@@ -50,7 +50,7 @@
 
     <properties>
         <sonar.host.url>http://localhost:9000</sonar.host.url>
-        <sonar.login>squ_9f462f190371d3d22fa6d943ad90ed9115372b0b</sonar.login>
+        <sonar.login>sqp_8e2a0074f1e90c368d9654187c7441e278ac2908</sonar.login>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <java.version>17</java.version>
