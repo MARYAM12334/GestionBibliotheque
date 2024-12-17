@@ -66,32 +66,6 @@ public class BookDAO {
         }
     }
 
-    // Récupérer un livre par son ISBN
-    public Book getBookByIsbn(String isbn) {
-        String sql = "SELECT * FROM books WHERE isbn = ?";
-        Book book = null;
-        
-        try (Connection connection = DbConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-             
-            statement.setString(1, isbn);
-            ResultSet resultSet = statement.executeQuery();
-            
-            if (resultSet.next()) {
-                book = new Book();
-                book.setId(resultSet.getInt("id"));
-                book.setTitle(resultSet.getString("title"));
-                book.setAuthor(resultSet.getString("author"));
-                book.setIsbn(resultSet.getString("isbn"));
-                book.setPublishedYear(resultSet.getInt("published_year"));
-            }
-        } catch (SQLException e) {
-            System.err.println("Erreur lors de la récupération du livre : " + e.getMessage());
-        }
-        
-        return book;
-    }
-    
     // Récupérer tous les livres
     public List<Book> getAllBooks() {
         List<Book> books = new ArrayList<>();
