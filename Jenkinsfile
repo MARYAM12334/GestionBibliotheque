@@ -97,7 +97,7 @@ pipeline {
 
 
                      steps {
-                                         withCredentials([string(credentialsId: 'SonarQube-library-management-token', variable: 'SONAR_TOKEN')]) {
+                                         withCredentials([string(credentialsId: 'gestionBib_token', variable: 'SONAR_TOKEN')]) {
 
                                                  withSonarQubeEnv('SonarQube') {
                                                          sh """
