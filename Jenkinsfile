@@ -48,6 +48,11 @@
 
 pipeline {
     agent any
+    environment {
+        SONAR_PROJECT_KEY = 'gestionBib'
+        SONAR_SCANNER_HOME = tool 'SonarQubeScanner'
+
+    }
     tools {
         maven 'Maven'
         jdk 'JDK11'
@@ -72,22 +77,38 @@ pipeline {
                 sh 'mvn test'
             }
         }
+//          stage('Quality Analysis') {
+//                     environment {
+//                         SONAR_TOKEN = credentials('squ_9f462f190371d3d22fa6d943ad90ed9115372b0b')  // Ajouté pour l'authentification SonarQube
+//                     }
+//                     steps {
+//                         withSonarQubeEnv('SonarQube') {
+//                             sh '''
+//                             `   echo "Starting SonarQube Analysis..."
+//                                 mvn sonar:sonar \
+//                                 -Dsonar.host.url=http://localhost:9000 \
+//                                 -Dsonar.login=$SONAR_TOKEN
+//                                 echo "SonarQube Analysis completed"
+//                             '''
+//                         }
+//                     }
+//                 }
          stage('Quality Analysis') {
-                    environment {
-                        SONAR_TOKEN = credentials('squ_9f462f190371d3d22fa6d943ad90ed9115372b0b')  // Ajouté pour l'authentification SonarQube
-                    }
-                    steps {
-                        withSonarQubeEnv('SonarQube') {
-                            sh '''
-                            `   echo "Starting SonarQube Analysis..."
-                                mvn sonar:sonar \
-                                -Dsonar.host.url=http://localhost:9000 \
-                                -Dsonar.login=$SONAR_TOKEN
-                                echo "SonarQube Analysis completed"
-                            '''
-                        }
-                    }
-                }
+
+
+                     steps {
+                                         withCredentials([string(credentialsId: 'SonarQube-library-management-token', variable: 'SONAR_TOKEN')]) {
+
+                                                 withSonarQubeEnv('SonarQube') {
+                                                         sh """
+                                      mvn sonar:sonar \
+                                     -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+                                     -Dsonar.login=${SONAR_TOKEN}
+                                     """
+                                                 }
+                                         }
+                                 }
+                 }
 
         stage('Deploy') {
             steps {
