@@ -71,18 +71,4 @@ public class BorrowDAO {
         }
     }
 
-    // Ajout d'une méthode pour vérifier si un livre est déjà emprunté
-    public boolean isBookBorrowed(int bookId) {
-        String query = "SELECT COUNT(*) FROM borrows WHERE book_id = ? AND return_date IS NULL";
-        try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setInt(1, bookId);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return rs.getInt(1) > 0;
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Error checking if book is borrowed", e);
-        }
-        return false;
-    }
 }

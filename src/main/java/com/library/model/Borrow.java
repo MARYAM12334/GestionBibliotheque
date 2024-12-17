@@ -22,7 +22,6 @@ public class Borrow {
         this.returnDate = returnDate;
     }
     public Borrow( Student student, Book book, Date borrowDate, Date returnDate) {
-        //this.id = id;
         this.student = student;
         this.book = book;
         this.borrowDate = borrowDate;
