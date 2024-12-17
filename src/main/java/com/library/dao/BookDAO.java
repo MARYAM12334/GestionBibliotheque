@@ -17,7 +17,7 @@ public class BookDAO {
     //Modifier la méthode add pour utiliser la connection passée dans le constructeur
 
     public void add(Book book) {
-        String sql = "INSERT INTO books (id,title, author, isbn, published_year) VALUES (?,?, ?, ?, ?)";
+        String sql = "INSERT INTO books (id,title, author,isbn, published_year) VALUES (?,?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, book.getId());
             statement.setString(2, book.getTitle());

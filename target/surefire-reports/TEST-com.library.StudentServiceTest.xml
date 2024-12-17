@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.library.StudentServiceTest" time="0.484" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.library.StudentServiceTest" time="0.483" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="gopherProxySet" value="false"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
     <property name="java.specification.version" value="11"/>
     <property name="sun.cpu.isalist" value=""/>
-    <property name="sonar.login" value="votre_token_sonar"/>
-    <property name="sonar.host.url" value="http://localhost:9000"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.class.path" value="/Users/maryamouhdan/Desktop/CI5/Partie_2/Bouarifi/Projet/GestionBibliotheque/target/test-classes:/Users/maryamouhdan/Desktop/CI5/Partie_2/Bouarifi/Projet/GestionBibliotheque/target/classes:/Users/maryamouhdan/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/maryamouhdan/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/maryamouhdan/.m2/repository/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar:/Users/maryamouhdan/.m2/repository/com/google/protobuf/protobuf-java/3.21.9/protobuf-java-3.21.9.jar:/Users/maryamouhdan/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.0/junit-jupiter-5.10.0.jar:/Users/maryamouhdan/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.0/junit-jupiter-api-5.10.0.jar:/Users/maryamouhdan/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/maryamouhdan/.m2/repository/org/junit/platform/junit-platform-commons/1.10.0/junit-platform-commons-1.10.0.jar:/Users/maryamouhdan/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/maryamouhdan/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.0/junit-jupiter-params-5.10.0.jar:/Users/maryamouhdan/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.0/junit-jupiter-engine-5.10.0.jar:/Users/maryamouhdan/.m2/repository/org/junit/platform/junit-platform-engine/1.10.0/junit-platform-engine-1.10.0.jar:"/>
     <property name="java.vm.vendor" value="Homebrew"/>
@@ -18,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="MA"/>
     <property name="sun.boot.library.path" value="/usr/local/Cellar/openjdk@11/11.0.25/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/maryamouhdan/Desktop/CI5/Partie_2/Bouarifi/Projet/GestionBibliotheque/target/surefire/surefirebooter-20241217002040968_3.jar /Users/maryamouhdan/Desktop/CI5/Partie_2/Bouarifi/Projet/GestionBibliotheque/target/surefire 2024-12-17T00-20-40_768-jvmRun1 surefire-20241217002040968_1tmp surefire_0-20241217002040968_2tmp"/>
+    <property name="sun.java.command" value="/Users/maryamouhdan/Desktop/CI5/Partie_2/Bouarifi/Projet/GestionBibliotheque/target/surefire/surefirebooter-20241217132358935_3.jar /Users/maryamouhdan/Desktop/CI5/Partie_2/Bouarifi/Projet/GestionBibliotheque/target/surefire 2024-12-17T13-23-58_737-jvmRun1 surefire-20241217132358935_1tmp surefire_0-20241217132358935_2tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/maryamouhdan/Desktop/CI5/Partie_2/Bouarifi/Projet/GestionBibliotheque/target/test-classes:/Users/maryamouhdan/Desktop/CI5/Partie_2/Bouarifi/Projet/GestionBibliotheque/target/classes:/Users/maryamouhdan/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/maryamouhdan/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/maryamouhdan/.m2/repository/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar:/Users/maryamouhdan/.m2/repository/com/google/protobuf/protobuf-java/3.21.9/protobuf-java-3.21.9.jar:/Users/maryamouhdan/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.0/junit-jupiter-5.10.0.jar:/Users/maryamouhdan/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.0/junit-jupiter-api-5.10.0.jar:/Users/maryamouhdan/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/maryamouhdan/.m2/repository/org/junit/platform/junit-platform-commons/1.10.0/junit-platform-commons-1.10.0.jar:/Users/maryamouhdan/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/maryamouhdan/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.0/junit-jupiter-params-5.10.0.jar:/Users/maryamouhdan/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.0/junit-jupiter-engine-5.10.0.jar:/Users/maryamouhdan/.m2/repository/org/junit/platform/junit-platform-engine/1.10.0/junit-platform-engine-1.10.0.jar:"/>
@@ -35,7 +33,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/Users/maryamouhdan/Desktop/CI5/Partie_2/Bouarifi/Projet/GestionBibliotheque/target/surefire/surefirebooter-20241217002040968_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/maryamouhdan/Desktop/CI5/Partie_2/Bouarifi/Projet/GestionBibliotheque/target/surefire/surefirebooter-20241217132358935_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="11.0.25+0"/>
@@ -64,23 +62,23 @@
     <property name="java.class.version" value="55.0"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase name="testUpdateStudent" classname="com.library.StudentServiceTest" time="0.145">
+  <testcase name="testUpdateStudent" classname="com.library.StudentServiceTest" time="0.118">
     <system-out><![CDATA[Student avant update Student{id=2, name='maryam', email='maryamon222@gmail.com'}
 Student 3 : Student{id=2, name='maryame', email='maryamon2223@gmail.com'}
 Student apres update Student{id=2, name='maryame', email='maryamon2223@gmail.com'}
 ]]></system-out>
   </testcase>
-  <testcase name="testFindStudentById" classname="com.library.StudentServiceTest" time="0.082">
+  <testcase name="testFindStudentById" classname="com.library.StudentServiceTest" time="0.073">
     <system-out><![CDATA[null
 ]]></system-out>
   </testcase>
-  <testcase name="testAddStudent" classname="com.library.StudentServiceTest" time="0.085"/>
-  <testcase name="testDeleteStudent" classname="com.library.StudentServiceTest" time="0.07">
+  <testcase name="testAddStudent" classname="com.library.StudentServiceTest" time="0.074"/>
+  <testcase name="testDeleteStudent" classname="com.library.StudentServiceTest" time="0.067">
     <system-out><![CDATA[Student normalement Trouver Student{id=3, name='Alice', email='alice@example.com'}
 Student normalement deleted
 ]]></system-out>
   </testcase>
-  <testcase name="testGetAllStudents" classname="com.library.StudentServiceTest" time="0.082">
+  <testcase name="testGetAllStudents" classname="com.library.StudentServiceTest" time="0.133">
     <system-out><![CDATA[[Student{id=4, name='Alice', email='alice@example.com'}, Student{id=5, name='Bob', email='bob@example.com'}]
 ]]></system-out>
   </testcase>

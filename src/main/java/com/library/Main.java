@@ -68,7 +68,7 @@ public class Main {
                     String isbn = scanner.nextLine();
                     System.out.print("Entrez l'année de publication: ");
                     int publishedYear = scanner.nextInt();
-                    Book book2 = new Book(title, author, isbn, publishedYear);
+                    Book book2 = new Book(1,title, author, isbn, publishedYear);
                     bookService.addBook(book2);
                     break;
 
@@ -81,7 +81,7 @@ public class Main {
                     String studentName = scanner.nextLine();
                     System.out.println("Entrez l'email de l'étudiant: ");
                     String studentEmail = scanner.nextLine();
-                    Student student = new Student(studentName,studentEmail);
+                    Student student = new Student(1,studentName,studentEmail);
                     studentService.addStudent(student);
                     break;
 
