@@ -52,15 +52,28 @@ pipeline {
         }
     }
     post {
-        success {
-            emailext to: 'maryamouhdan@gmail.com',
-                subject: 'Build Success',
-                body: 'Le build a été complété avec succès.'
+            success {
+                emailext (
+                    subject: "✅ Build Réussi #${env.BUILD_NUMBER}",
+                    body: """Le build ${env.JOB_NAME} #${env.BUILD_NUMBER} a réussi!
+
+                        Voir les détails: ${env.BUILD_URL}
+
+                        Tests: ${currentBuild.tests}
+                        SonarQube: [URL SonarQube]
+                        """,
+                    to: "maryamouhdan@email.com"
+                )
+            }
+            failure {
+                emailext (
+                    subject: "❌ Build Échoué #${env.BUILD_NUMBER}",
+                    body: """Le build ${env.JOB_NAME} #${env.BUILD_NUMBER} a échoué.
+
+                        Voir les logs: ${env.BUILD_URL}console
+                        """,
+                    to: "maryamouhdan@email.com"
+                )
+            }
         }
-        failure {
-            emailext to: 'maryamouhdan@gmail.com',
-                subject: 'Build Failed',
-                body: 'Le build a échoué.'
-        }
-    }
 }
