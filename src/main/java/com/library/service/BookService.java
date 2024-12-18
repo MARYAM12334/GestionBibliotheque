@@ -6,17 +6,14 @@ import java.util.List;
 
 public class BookService {
     private BookDAO bookDAO;  // Utilisation de DAO pour la gestion des livres
-
     // Constructeur qui initialise l'objet BookDAO
     public BookService(BookDAO bookDAO) {
         this.bookDAO = bookDAO;
     }
-
     // Ajouter un livre
     public void addBook(Book book) {
         bookDAO.add(book);
     }
-
     // Afficher tous les livres
     public void displayBooks() {
         List<Book> books = bookDAO.getAllBooks();
@@ -24,7 +21,6 @@ public class BookService {
             System.out.println("Aucun livre n'est disponible dans la bibliothèque.");
             return;
         }
-
         System.out.println("\n=== Liste des Livres ===");
         for (Book book : books) {
             System.out.println("ID: " + book.getId()
@@ -35,6 +31,7 @@ public class BookService {
                     + "| Éditeur: " + book.getPublisher()
                     );
         }
+
     }
 
     // Trouver un livre par ID
