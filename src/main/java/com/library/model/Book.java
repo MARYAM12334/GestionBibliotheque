@@ -12,17 +12,6 @@ public class Book {
     // Constructeur par défaut
     public Book() {
     }
-
-    // Constructeur complet
-    public Book(int id, String title, String author, String publisher, String isbn, int publishedYear) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-        this.publisher = publisher;
-        this.isbn = isbn;
-        this.publishedYear = publishedYear;
-    }
-
     // Constructeur Ajouter car Id est auto_incrementer
     public Book(String title, String author, String isbn, int publishedYear) {
         this.title = title;
@@ -37,13 +26,6 @@ public class Book {
         this.isbn = isbn;
         this.publishedYear = publishedYear;
     }
-
-    // Constructeur additionnel si nécessaire
-    public Book(String title, String author) {
-        this.title = title;
-        this.author = author;
-    }
-
     // Getters et Setters
 
     public int getId() {
@@ -105,4 +87,5 @@ public class Book {
                 ", publishedYear=" + publishedYear +
                 '}';
     }
+
 }

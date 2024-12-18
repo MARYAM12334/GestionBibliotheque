@@ -17,16 +17,6 @@ public class Student {
         this.name = name;
         this.email = email;
     }
-    public Student(String name) {
-        this.name = name;
-    }
-
-    public Student(String name, String email) {
-        this.name = name;
-        this.email = email;
-    }
-
-
     // Getters et Setters
     public int getId() {
         return id;

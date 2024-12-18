@@ -45,19 +45,20 @@ class StudentServiceTest {
     }
     @Test
     void testUpdateStudent() {
-            Student student = new Student(2, "maryam", "maryamon222@gmail.com");
-            studentDAO.addStudent(student);
+        // Arrange
+        Student student = new Student(2, "maryam", "maryamon222@gmail.com");
+        studentDAO.addStudent(student);
 
-            System.out.println("Student avant update " + student);
+        // Act
+        Student student2 = new Student(2, "maryame", "maryamon2223@gmail.com");
+        studentDAO.updateStudent(student2);
 
-            Student student2 = new Student(2, "maryame", "maryamon2223@gmail.com");
-            studentDAO.updateStudent(student2);
-
-            Student student3 = studentDAO.getStudentById(2);
-            System.out.println("Student 3 : "+ student3);
-            System.out.println("Student apres update "+ studentDAO.getStudentById(2));
-
-        }
+        // Assert
+        Student student3 = studentDAO.getStudentById(2);
+        assertEquals("maryame", student3.getName(), "Le nom devrait être mis à jour");
+        assertEquals("maryamon2223@gmail.com", student3.getEmail(), "L'email devrait être mis à jour");
+        assertEquals(2, student3.getId(), "L'ID ne devrait pas changer");
+    }
 
     @Test
     void testDeleteStudent() {
@@ -88,10 +89,15 @@ class StudentServiceTest {
     }
     @Test
     void testFindStudentById() {
+        // Arrange
         Student student = new Student(6, "maryamoo", "maryamoooo@gmail.com");
         studentDAO.addStudent(student);
+        // Act
         Student student1 = studentService.findStudentById(6);
-        System.out.println("Student trouvé: "+ student1);
-
+        // Assert
+        assertNotNull(student1, "L'étudiant ne devrait pas être null");
+        assertEquals(6, student1.getId(), "L'ID devrait être 6");
+        assertEquals("maryamoo", student1.getName(), "Le nom devrait être maryamoo");
+        assertEquals("maryamoooo@gmail.com", student1.getEmail(), "L'email devrait correspondre");
     }
 }

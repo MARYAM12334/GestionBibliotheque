@@ -39,14 +39,6 @@ class BookServiceTest {
     void displayBooks() {
         Book book1 = new Book(1,"Java Programming", "John Doe", "12345", 2023);
         Book book2 = new Book(2,"Python Programming", "Jane Doe", "12346", 2024);
-//        Book book3 = new Book(1,"Java Programming", "John Doe", "12345", 2023);
-//
-//        Book book4 = new Book(1,"Java Programming", "John Doe", "12345", 2023);
-//        Book book5 = new Book(1,"Java Programming", "John Doe", "12345", 2023);
-//        Book boo6 = new Book(1,"Java Programming", "John Doe", "12345", 2023);
-//        Book book7 = new Book(1,"Java Programming", "John Doe", "12345", 2023);
-//        Book book8 = new Book(1,"Java Programming", "John Doe", "12345", 2023);
-
 
         bookService.addBook(book1);
         bookService.addBook(book2);
@@ -64,6 +56,20 @@ class BookServiceTest {
                     + "| Année de publication: " + book.getPublishedYear()
                     );
         }
+
+        // Vérifier les propriétés de book1
+        assertEquals(1, book1.getId());
+        assertEquals("Java Programming", book1.getTitle());
+        assertEquals("John Doe", book1.getAuthor());
+        assertEquals("12345", book1.getIsbn());
+        assertEquals(2023, book1.getPublishedYear());
+
+        // Vérifier les propriétés de book2
+        assertEquals(2, book2.getId());
+        assertEquals("Python Programming", book2.getTitle());
+        assertEquals("Jane Doe", book2.getAuthor());
+        assertEquals("12346", book2.getIsbn());
+        assertEquals(2024, book2.getPublishedYear());
 
     }
 
